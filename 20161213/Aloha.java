@@ -6,8 +6,8 @@ public class Aloha{
 			data = new java.util.Scanner(System.in).nextLine();
 			System.out.println(data);
 			if( data.equals("exit") ){
-			System.out.println("おわります");
-		}
+				break;
+			}
 		}
 	}
 }
