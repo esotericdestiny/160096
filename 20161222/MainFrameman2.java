@@ -1,6 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
-public class MainFrameman{
+public class MainFrameman2{
 public static void main(String[] args) {
 	FrameMan fm = new FrameMan();
 }
@@ -9,6 +9,7 @@ class FrameMan{
 	JFrame frame;
 	JPanel panel;
 	JLabel label;
+	ImageIcon icon;
 	public FrameMan(){
 		openWindow();
 		
@@ -20,8 +21,9 @@ class FrameMan{
 		frame.setSize(300,300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		icon = new ImageIcon("1.png");
 		panel = new JPanel();
-		label = new JLabel("Aloha");
+		label = new JLabel(icon);
 		panel.add(label);
 		frame.add(panel);
 		
