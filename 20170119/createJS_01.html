@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+  <script>
+    window.addEventListener("load", init);
+    function init() {
+      var stage = new createjs.Stage("Canvas");
+
+      var shape = new createjs.Shape();
+     
+      shape.graphics.setStrokeStyle(10); 
+      shape.graphics.beginFill("Green");
+      shape.graphics.drawCircle(200, 200, 50);
+      shape.graphics.beginFill("Red"); 
+      shape.graphics.drawCircle(200, 250, 50); 
+      shape.graphics.beginFill("Blue"); 
+      shape.graphics.drawCircle(200, 300, 50); 
+      shape.graphics.drawRect(300, 200, 50, 50);
+      shape.graphics.drawPolyStar(500,200,75,20,0.6,-90);
+      shape.graphics.beginFill("Purple"); 
+      shape.graphics.moveTo(10,10);
+      shape.graphics.lineTo(100,10);
+      shape.graphics.lineTo(10,100);
+      shape.graphics.lineTo(10,10);
+
+      shape.graphics.beginFill("Skyblue"); 
+      var x = 400;
+      var y = 400;
+
+      shape.graphics.moveTo(x+45,y+0);
+      shape.graphics.lineTo(x+90,y+50);
+      shape.graphics.lineTo(x+70,y+50);
+      shape.graphics.lineTo(x+70,y+100);
+      shape.graphics.lineTo(x+20,y+100);
+      shape.graphics.lineTo(x+20,y+50);
+      shape.graphics.lineTo(x+0,y+50);
+      shape.graphics.lineTo(x+50,y+0);
+      stage.addChild(shape);
+
+
+      var t = new createjs.Text("Hello World!", "24px sans-serif", "DarkRed");
+      t.x=380;
+      t.y=300;
+      t.textAlign = "center";
+      stage.addChild(t); 
+      stage.update();
+      
+    }
+  </script>
+</head>
+<body>
+  <canvas id="Canvas" width="800" height="800"></canvas>
+</body>
+</html>

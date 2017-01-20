@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Canvas</title>
+</head>
+<body>
+<h1>Canvas </h1>
+<hr>
+<canvas id="canvas"  width="2000" height="2000"></canvas>
+<script type="text/javascript">
+	var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d'); 
+    ctx.fillStyle = "rgb(0,0,200)";
+    for(var i=0; i<50; i++){
+    	if(i%5==0){
+    	ctx.fillStyle = "rgb(100,200,50)";
+    	ctx.fillRect(250+i*10, 250+i*10, 250-i*5, 250-i*5);
+    	}else{
+   		ctx.strokeRect(250+i*10, 250+i*10, 250-i*5, 250-i*5);
+    }
+    }
+		ctx.beginPath();
+		ctx.moveTo(75,50);  
+		ctx.lineTo(100,75);
+		ctx.lineTo(100,25);
+		ctx.fill();            
+
+		ctx.moveTo(150,50);
+		ctx.lineTo(125,75);
+		ctx.lineTo(125,25);
+		ctx.closePath();
+		ctx.stroke();
+
+		ctx.beginPath();
+		ctx.arc(650, 100, 100, 0, Math.PI, false);
+		ctx.fill();   
+		ctx.beginPath();
+		ctx.arc(650, 100, 100, 0, Math.PI, true);
+		ctx.stroke(); 
+		ctx.beginPath();
+		ctx.arc(850, 100, 100, 0, Math.PI*2, false);
+		ctx.fill();
+
+		ctx.beginPath();
+		ctx.arc(1110, 110, 80, 0, Math.PI*1.5, false);
+		ctx.fill();
+		ctx.beginPath();
+		ctx.arc(1115, 105, 80, 0, Math.PI*1.5, true);
+		ctx.fill();
+
+
+
+
+</script>
+</body>
+</html>
