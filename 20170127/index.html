@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Create JS</title>
+</head>
+<body>
+<h1>Canvas</h1>
+<hr>
+<canvas id="myCanvas" width="800" height="800"></canvas>
+<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+<script type="text/javascript">
+	window.addEventListener('load',init);
+	function init() {
+		var stage = new createjs.Stage("myCanvas");
+		stage.enableMouseOver();
+		var shape = new createjs.Shape();
+		shape.graphics.beginFill("#ff0000");
+		shape.graphics.drawRect(100,100,80,80);
+		shape.addEventListener('click', handleClick);
+		shape.addEventListener('mouseover', handleMouseOver);
+
+		var flag = 0;
+		var speed = 1;
+
+		shape.x=500;
+		shape.rotation=45;
+		stage.addChild(shape);
+		var muki =+1;
+		createjs.Ticker.on('tick',function(){
+		shape.x += 5 * muki * speed;
+		if(shape.x>800){
+			muki = -1;
+		}
+		if(shape.x<0){
+			muki = +1;
+		}
+		stage.update();
+
+		});
+
+		function handleClick(event){
+			speed = speed*2;
+			if(flag == 0) {
+			shape.graphics.clear();
+			shape.graphics.beginFill("#0000ff");
+			shape.graphics.drawRect(100, 100, 80, 80);
+
+			flag = 1;
+		} else {
+			shape.graphics.clear();
+			shape.graphics.beginFill("#ff0000");
+			shape.graphics.drawRect(100, 100, 80, 80);
+
+			flag = 0;
+		}
+		}
+			function handleMouseOver(){
+			speed = speed*2;
+			shape.graphics.clear();
+			shape.graphics.beginFill("#00ffff");
+			shape.graphics.drawRect(100, 100, 80, 80);	
+			}
+	}
+</script>
+</body>
+</html>
