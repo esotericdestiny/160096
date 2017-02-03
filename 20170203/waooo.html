@@ -1,0 +1,66 @@
+
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>EaselJSデモ: globalToLocal</title>
+	<link href="../shared/demo.css" rel="stylesheet" type="text/css">
+	<script src="http://code.createjs.com/easeljs-0.6.0.min.js"></script>
+	<script>
+		var stage, holder;
+		function init() {
+			stage = new createjs.Stage("demoCanvas");
+			holder = stage.addChild(new createjs.Container());
+			holder.x = holder.y = 150;
+			
+			for (var i=0; i<25; i++) {
+				var shape = new createjs.Shape();
+				shape.graphics.beginFill(createjs.Graphics.getHSL(Math.random()*360,100,50)).drawCircle(0,0,30);
+				shape.x = Math.random()*300-150;
+				shape.y = Math.random()*300-150;
+				holder.addChild(shape); 
+			}
+			
+			createjs.Ticker.addEventListener("tick", tick);
+		}
+		
+		function tick() {
+			holder.rotation += 3;
+			var l = holder.getNumChildren();
+			for (var i=0; i<l; i++) {
+				var child = holder.getChildAt(i);
+				child.alpha = 0.1;
+				var pt = child.globalToLocal(stage.mouseX, stage.mouseY);
+				if (stage.mouseInBounds && child.hitTest(pt.x, pt.y)) { child.alpha = 1; }
+			}
+			
+			stage.update();
+		}
+	</script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-57426304-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script>
+	$(function(){
+		var bd = $('#bd');
+		$($(bd).children()[0]).css('width', '24%');
+		$($(bd).children()[1]).css('width', '74%');
+	});
+</script>
+
+</head>
+<body onload="init();">
+	<canvas id="demoCanvas" width="300" height="300">
+		代替コンテンツ
+	</canvas>
+<!-- admax -->
+<script src="http://adm.shinobi.jp/s/84a877321d7f8f9c4664e548a20cbbc8"></script>
+<!-- admax -->
+</body>
+</html>

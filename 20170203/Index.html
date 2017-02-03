@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Create JS-KeyBoard</title>
+	 <link rel="stylesheet" href="css/base.css">
+	<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+	<script type="text/javascript">
+	window.addEventListener('load',init);
+	function init() {
+		var stage = new createjs.Stage('myCanvas');
+		var shape = new createjs.Shape();
+		shape.graphics.beginFill("#0000ff");
+		shape.graphics.drawRect(400,300,100,100);
+
+		var shape2 = new createjs.Shape();
+
+			shape2.x = 500;
+			shape2.y = 0;
+
+		stage.addChild(shape);
+		stage.addChild(shape2);
+
+			stage.update();
+
+
+		window.addEventListener('keydown', handleKeydown);
+		var muki = 0;
+		var muki2 =0;
+		function handleKeydown(event){
+			var keyCode = event.keyCode;
+			if(keyCode==39) muki = +1, muki2=0;
+			if(keyCode==37) muki = -1, muki2=0;
+			if(keyCode==40) muki2 = +1, muki=0;
+			if(keyCode==38) muki2 = -1, muki=0;
+			if(keyCode==27) muki2 =0, muki=0;
+		}
+		createjs.Ticker.on('tick', function(){
+				shape.x += 4 * muki;
+				shape.y += 4 * muki2;
+				var point = shape2.localToLocal(0, 0, shape);
+				var isHit = shape.hitTest(point.x,  point.y);
+				if(isHit == true) {
+					shape2.graphics.clear();
+					shape2.graphics.beginFill("#ff0000");
+					shape2.graphics.drawRect(0, 0, 100, 100);
+				} else {
+					shape2.graphics.clear();
+					shape2.graphics.beginFill("#00ff00");
+					shape2.graphics.drawRect(0, 0, 100, 100);
+				}
+				stage.update();
+			});
+
+}
+</script>
+</head>
+<body>
+<h1>createjs-Keyboard</h1>
+<hr>
+<canvas id="myCanvas" width="800" height="800"></canvas>
+
+</body>
+</html>
